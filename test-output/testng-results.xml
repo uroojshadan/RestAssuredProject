@@ -1,29 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="3" passed="3">
+<testng-results skipped="0" failed="1" ignored="0" total="15" passed="14">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="2834" started-at="2023-02-13T04:37:01Z" finished-at="2023-02-13T04:37:04Z">
+  <suite name="Default suite" duration-ms="8161" started-at="2023-02-12T23:56:45 CST" finished-at="2023-02-12T23:56:53 CST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="2834" started-at="2023-02-13T04:37:01Z" finished-at="2023-02-13T04:37:04Z">
-      <class name="testCases.CreateOneProductUsingHashMapMethod">
-        <test-method status="PASS" signature="createOneProductUsingHashMap()[pri:1, instance:testCases.CreateOneProductUsingHashMapMethod@75c072cb]" name="createOneProductUsingHashMap" duration-ms="481" started-at="2023-02-13T04:37:04Z" finished-at="2023-02-13T04:37:04Z">
+    <test name="Default test" duration-ms="8161" started-at="2023-02-12T23:56:45 CST" finished-at="2023-02-12T23:56:53 CST">
+      <class name="test.UpdateOneProductUsingHashMap">
+        <test-method status="PASS" signature="updateOneProductUsingHashMap()[pri:1, instance:test.UpdateOneProductUsingHashMap@467aecef]" name="updateOneProductUsingHashMap" duration-ms="1915" started-at="2023-02-12T23:56:45 CST" finished-at="2023-02-12T23:56:47 CST">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createOneProductUsingHashMap -->
-      </class> <!-- testCases.CreateOneProductUsingHashMapMethod -->
-      <class name="testCases.ReadAllProducts">
-        <test-method status="PASS" signature="readAllProducts()[pri:0, instance:testCases.ReadAllProducts@25b485ba]" name="readAllProducts" duration-ms="1994" started-at="2023-02-13T04:37:01Z" finished-at="2023-02-13T04:37:03Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- readAllProducts -->
-      </class> <!-- testCases.ReadAllProducts -->
-      <class name="testCases.ReadOneProduct">
-        <test-method status="PASS" signature="readOneProduct()[pri:0, instance:testCases.ReadOneProduct@2b546384]" name="readOneProduct" duration-ms="334" started-at="2023-02-13T04:37:03Z" finished-at="2023-02-13T04:37:04Z">
+        </test-method> <!-- updateOneProductUsingHashMap -->
+        <test-method status="FAIL" signature="readOneProduct()[pri:2, instance:test.UpdateOneProductUsingHashMap@467aecef]" name="readOneProduct" duration-ms="384" started-at="2023-02-12T23:56:47 CST" finished-at="2023-02-12T23:56:48 CST">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[The following asserts failed:
+Status codes do not match expected [200] but found [404],
+Product ids donot match expected [6954] but found [null],
+Product names are not matching expected [Amazing Pillow 5.0] but found [null],
+Product Description not matching expected [The best pillow for amazing programmers2.] but found [null],
+Prices not matching expected [500] but found [null],
+category ids not matching expected [2] but found [null]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: The following asserts failed:
+Status codes do not match expected [200] but found [404],
+Product ids donot match expected [6954] but found [null],
+Product names are not matching expected [Amazing Pillow 5.0] but found [null],
+Product Description not matching expected [The best pillow for amazing programmers2.] but found [null],
+Prices not matching expected [500] but found [null],
+category ids not matching expected [2] but found [null]
+at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:47)
+at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:31)
+at test.UpdateOneProductUsingHashMap.readOneProduct(UpdateOneProductUsingHashMap.java:140)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:498)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.util.ArrayList.forEach(ArrayList.java:1257)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- readOneProduct -->
-      </class> <!-- testCases.ReadOneProduct -->
+      </class> <!-- test.UpdateOneProductUsingHashMap -->
+      <class name="test.DeleteOneProductUsingHashMap">
+        <test-method status="PASS" signature="deleteOneProductUsingHashMap()[pri:1, instance:test.DeleteOneProductUsingHashMap@3d921e20]" name="deleteOneProductUsingHashMap" duration-ms="312" started-at="2023-02-12T23:56:48 CST" finished-at="2023-02-12T23:56:48 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteOneProductUsingHashMap -->
+        <test-method status="PASS" signature="readOneProduct()[pri:2, instance:test.DeleteOneProductUsingHashMap@3d921e20]" name="readOneProduct" duration-ms="298" started-at="2023-02-12T23:56:48 CST" finished-at="2023-02-12T23:56:48 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readOneProduct -->
+      </class> <!-- test.DeleteOneProductUsingHashMap -->
+      <class name="test.CreateOneProductUsingExternalFileMethod">
+        <test-method status="PASS" signature="createOneProductUsingExternalJsonFile()[pri:1, instance:test.CreateOneProductUsingExternalFileMethod@36b4cef0]" name="createOneProductUsingExternalJsonFile" duration-ms="311" started-at="2023-02-12T23:56:48 CST" finished-at="2023-02-12T23:56:48 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createOneProductUsingExternalJsonFile -->
+        <test-method status="PASS" signature="readAllProducts()[pri:2, instance:test.CreateOneProductUsingExternalFileMethod@36b4cef0]" name="readAllProducts" duration-ms="1012" started-at="2023-02-12T23:56:48 CST" finished-at="2023-02-12T23:56:50 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readAllProducts -->
+        <test-method status="PASS" signature="readOneProductWhenCreatingProductUsingExternalJson()[pri:3, instance:test.CreateOneProductUsingExternalFileMethod@36b4cef0]" name="readOneProductWhenCreatingProductUsingExternalJson" duration-ms="340" started-at="2023-02-12T23:56:50 CST" finished-at="2023-02-12T23:56:50 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readOneProductWhenCreatingProductUsingExternalJson -->
+      </class> <!-- test.CreateOneProductUsingExternalFileMethod -->
+      <class name="test.ReadAllProducts">
+        <test-method status="PASS" signature="readAllProducts()[pri:0, instance:test.ReadAllProducts@1a1d6a08]" name="readAllProducts" duration-ms="626" started-at="2023-02-12T23:56:50 CST" finished-at="2023-02-12T23:56:50 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readAllProducts -->
+      </class> <!-- test.ReadAllProducts -->
+      <class name="test.ReadOneProduct">
+        <test-method status="PASS" signature="readOneProduct()[pri:0, instance:test.ReadOneProduct@37d31475]" name="readOneProduct" duration-ms="299" started-at="2023-02-12T23:56:50 CST" finished-at="2023-02-12T23:56:51 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readOneProduct -->
+      </class> <!-- test.ReadOneProduct -->
+      <class name="test.CreateOneProductUsingExternalFileMethodDynamic">
+        <test-method status="PASS" signature="createOneProductUsingExternalJsonFile()[pri:1, instance:test.CreateOneProductUsingExternalFileMethodDynamic@27808f31]" name="createOneProductUsingExternalJsonFile" duration-ms="300" started-at="2023-02-12T23:56:51 CST" finished-at="2023-02-12T23:56:51 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createOneProductUsingExternalJsonFile -->
+        <test-method status="PASS" signature="readAllProducts()[pri:2, instance:test.CreateOneProductUsingExternalFileMethodDynamic@27808f31]" name="readAllProducts" duration-ms="727" started-at="2023-02-12T23:56:51 CST" finished-at="2023-02-12T23:56:52 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readAllProducts -->
+        <test-method status="PASS" signature="readOneProductWhenCreatingProductUsingExternalJson()[pri:3, instance:test.CreateOneProductUsingExternalFileMethodDynamic@27808f31]" name="readOneProductWhenCreatingProductUsingExternalJson" duration-ms="324" started-at="2023-02-12T23:56:52 CST" finished-at="2023-02-12T23:56:52 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readOneProductWhenCreatingProductUsingExternalJson -->
+      </class> <!-- test.CreateOneProductUsingExternalFileMethodDynamic -->
+      <class name="test.CreateOneProductUsingHashMapMethod">
+        <test-method status="PASS" signature="createOneProductUsingHashMap()[pri:1, instance:test.CreateOneProductUsingHashMapMethod@436e852b]" name="createOneProductUsingHashMap" duration-ms="291" started-at="2023-02-12T23:56:52 CST" finished-at="2023-02-12T23:56:52 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createOneProductUsingHashMap -->
+        <test-method status="PASS" signature="readAllProducts()[pri:2, instance:test.CreateOneProductUsingHashMapMethod@436e852b]" name="readAllProducts" duration-ms="655" started-at="2023-02-12T23:56:52 CST" finished-at="2023-02-12T23:56:53 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readAllProducts -->
+        <test-method status="PASS" signature="readOneProductWhenCreatingProductUsingHashMap()[pri:3, instance:test.CreateOneProductUsingHashMapMethod@436e852b]" name="readOneProductWhenCreatingProductUsingHashMap" duration-ms="313" started-at="2023-02-12T23:56:53 CST" finished-at="2023-02-12T23:56:53 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readOneProductWhenCreatingProductUsingHashMap -->
+      </class> <!-- test.CreateOneProductUsingHashMapMethod -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
