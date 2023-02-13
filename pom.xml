@@ -32,17 +32,20 @@
 			<groupId>io.rest-assured</groupId>
 			<artifactId>json-schema-validator</artifactId>
 			<version>4.1.1</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>json-path</artifactId>
 			<version>4.1.1</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.hamcrest</groupId>

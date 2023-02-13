@@ -1,4 +1,4 @@
-package testCases;
+package test;
 
 import static io.restassured.RestAssured.given;
 import java.io.File;

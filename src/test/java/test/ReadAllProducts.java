@@ -1,4 +1,4 @@
-package testCases;
+package test;
 
 //static import because given() when() then() are static methods.We need to import static packages manually
 import static io.restassured.RestAssured.given;

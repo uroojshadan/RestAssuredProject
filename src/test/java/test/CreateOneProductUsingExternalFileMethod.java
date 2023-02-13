@@ -1,4 +1,4 @@
-package testCases;
+package test;
 
 import static io.restassured.RestAssured.given;
 import java.io.File;
@@ -8,27 +8,22 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import util.TestBase;
 
 //end to end validation: 1.create a product 2.read all products to get firstProductID 
 //3.read One product with id to validate if the product we provided in payload is appearing
 
-public class CreateOneProductUsingExternalFileMethodDynamic extends TestBase{
+public class CreateOneProductUsingExternalFileMethod {
 
 	String baseURI;
 	SoftAssert softAssert;
 	String firstProductID;
 	String createOneProductPayloadPath;
 	String readOneProductID;
-	//we can also get this from a method from another class like TestBase and extending it to this class 
-	//String path="src/main/java/data/createPayload.json";
 	
-	public CreateOneProductUsingExternalFileMethodDynamic() {
+	public CreateOneProductUsingExternalFileMethod() {
 		baseURI = "https://techfios.com/api-prod/api/product";
 		softAssert = new SoftAssert();
-		//createOneProductPayloadPath =path ;//-->use this when setting path as global variable
-		createOneProductPayloadPath=setFilePath("src/main/java/data/createPayload.json");
-		
+		createOneProductPayloadPath = "src/main/java/data/createPayload.json";
 	}
 
 	 //1. method 1: sending createPayload as a external json file
@@ -44,6 +39,7 @@ public class CreateOneProductUsingExternalFileMethodDynamic extends TestBase{
 		 * 
 		 * 
 		 */
+		
 		Response response =
 
 				given().baseUri(baseURI)// gets baseURI from constructor

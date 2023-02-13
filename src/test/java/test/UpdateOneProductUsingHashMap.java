@@ -1,4 +1,4 @@
-package testCases;
+package test;
 
 import static io.restassured.RestAssured.given;
 import java.io.File;
@@ -12,58 +12,56 @@ import io.restassured.response.Response;
 //end to end validation: 1.create a product 2.read all products to get firstProductID 
 //3.read One product with id to validate if the product we provided in payload is appearing
 
-public class CreateOneProductUsingHashMapMethod {
+public class UpdateOneProductUsingHashMap {
 
 	String baseURI;
 	SoftAssert softAssert;
-	String firstProductID;
 	String readOneProductID;
-	HashMap<String, String> createProductData;//passing createOneProductPayload as hashmap
+	HashMap<String, String> updateProductData;// passing createOneProductPayload as hashmap
 
-	public CreateOneProductUsingHashMapMethod() {
+	public UpdateOneProductUsingHashMap() {
 		baseURI = "https://techfios.com/api-prod/api/product";
 		softAssert = new SoftAssert();
 	}
 
-	//  method 2: sending createPayload as a hashmap
 	
-	public HashMap<String, String> getCreatePayloadAsHashMap() {
+	public HashMap<String, String> getUpdatePayloadAsHashMap() {
 
-		createProductData = new HashMap<String, String>();
+		updateProductData = new HashMap<String, String>();
 
-		createProductData.put("name", "Amazing Pillow 5.0");
-		createProductData.put("price", "500");
-		createProductData.put("description", "The best pillow for amazing programmers2.");
-		createProductData.put("category_id", "2");
+		updateProductData.put("id", "6954");
+		updateProductData.put("name", "Amazing Pillow 5.0");
+		updateProductData.put("price", "500");
+		updateProductData.put("description", "The best pillow for amazing programmers2.");
+		updateProductData.put("category_id", "2");
 
-		return createProductData;
+		return updateProductData;
 
 	}
 
 	@Test(priority = 1)
-	public void createOneProductUsingHashMap() {
+	public void updateOneProductUsingHashMap() {
 
-		
 		Response response =
 
 				given().baseUri(baseURI)// gets baseURI from constructor
 						.header("Content-Type", "application/json; charset=UTF-8")
 						.header("Authorization", "Bearer KKKhughghkkIIInkwlhd")// bearer token
-						.body(getCreatePayloadAsHashMap()).
+						.body(getUpdatePayloadAsHashMap()).
 
 						/*
 						 * ways to pass post payload: 1. external json file 2. pojo class 3. hashMap 4.
 						 * org.Json
 						 */
 
-						when().post("/create.php").then()
+						when().put("/update.php").then()
 
 						.extract().response();
 
 		// validating statusCode
 		int statusCode = response.getStatusCode();
 		System.out.println("Status code : " + statusCode);
-		softAssert.assertEquals(statusCode, 201, "Status codes do not match");
+		softAssert.assertEquals(statusCode, 200, "Status codes do not match");
 
 		// validating response header
 		String responseHeadercontentType = response.getHeader("Content-Type");
@@ -78,40 +76,17 @@ public class CreateOneProductUsingHashMapMethod {
 
 		String messageFromResponseBody = jsonPath.getString("message");
 		System.out.println("message from response body : " + messageFromResponseBody);
-		softAssert.assertEquals(messageFromResponseBody, "Product was created.", "Messages not matching");
+		softAssert.assertEquals(messageFromResponseBody, "Product was updated.", "Messages not matching");
 		softAssert.assertAll();// should be very last
 		// statement after all softasserts catches all the failed assertions if any
+		readOneProductID = getUpdatePayloadAsHashMap().get("id");// assigning readOneProductId the id we are sending in
+																	// update hashmap
 
 	}
 
-	@Test(priority = 2) // using readAllProducts to get first id
-	public void readAllProducts() {
+	@Test(priority = 2)
+	public void readOneProduct() {
 
-		Response response =
-
-				given().log().all().baseUri(baseURI)// gets baseURI from constructor
-						.header("Content-Type", "application/json; charset=UTF=8").auth().preemptive()
-						.basic("demo@techfios.com", "abc123").
-
-						when().get("/read.php").then().extract().response();
-
-		String responseBody = response.getBody().asString();
-
-		System.out.println("Response Body : " + responseBody);// -->astring() prints body in single line
-		// response.getBody().prettyPrint();//gets in a nice format and not in single
-		// line
-
-		JsonPath jsonPath = new JsonPath(responseBody);
-		firstProductID = jsonPath.getString("records[0].id");
-		System.out.println("first product id : " + firstProductID);
-		readOneProductID = firstProductID;
-
-	}
-
-	
-	// readOneProduct implemetation when creating One product using hashmap
-	@Test(priority = 3)
-	public void readOneProductWhenCreatingProductUsingHashMap() {
 		Response response =
 
 				given()
@@ -124,6 +99,18 @@ public class CreateOneProductUsingHashMapMethod {
 
 						.extract().response();
 
+		// validating statusCode
+		int statusCode = response.getStatusCode();
+		System.out.println("Status code : " + statusCode);
+		// softAssert.assertEquals(statusCode, 201,"Status codes do not
+		// match");//intetionally failing to test softAssert
+		softAssert.assertEquals(statusCode, 200, "Status codes do not match");
+
+		// validating response header
+		String responseHeadercontentType = response.getHeader("Content-Type");
+		System.out.println("Response body header : " + responseHeadercontentType);
+		Assert.assertEquals(responseHeadercontentType, "application/json", "Response body headers do not match");
+
 		String responseBody = response.getBody().asString();
 
 		System.out.println("Response Body : " + responseBody);
@@ -134,20 +121,20 @@ public class CreateOneProductUsingHashMapMethod {
 		softAssert.assertEquals(actualProductId, readOneProductID, "Product ids donot match");
 
 		String actualProductName = jsonPath.getString("name");
-		String expectedProductName = getCreatePayloadAsHashMap().get("name");
+		String expectedProductName = getUpdatePayloadAsHashMap().get("name");
 		softAssert.assertEquals(actualProductName, expectedProductName, "Product names are not matching");
 
 		String actualproductDescription = jsonPath.getString("description");
-		String expectedProductDescription = getCreatePayloadAsHashMap().get("description");
+		String expectedProductDescription = getUpdatePayloadAsHashMap().get("description");
 		softAssert.assertEquals(actualproductDescription, expectedProductDescription,
 				"Product Description not matching");
 
 		String actualProductPrice = jsonPath.getString("price");
-		String expectedProductPrice = getCreatePayloadAsHashMap().get("price");
+		String expectedProductPrice = getUpdatePayloadAsHashMap().get("price");
 		softAssert.assertEquals(actualProductPrice, expectedProductPrice, "Prices not matching");
 
 		String actualProductCategory_id = jsonPath.getString("category_id");
-		String expectedProductCategory_id = getCreatePayloadAsHashMap().get("category_id");
+		String expectedProductCategory_id = getUpdatePayloadAsHashMap().get("category_id");
 		softAssert.assertEquals(actualProductCategory_id, expectedProductCategory_id, "category ids not matching");
 
 		softAssert.assertAll();
