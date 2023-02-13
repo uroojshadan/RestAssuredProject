@@ -29,7 +29,7 @@ public class UpdateOneProductUsingHashMapTest {
 
 		updateProductData = new HashMap<String, String>();
 
-		updateProductData.put("id", "6954");
+		updateProductData.put("id", "7088");
 		updateProductData.put("name", "Amazing Pillow 5.0");
 		updateProductData.put("price", "500");
 		updateProductData.put("description", "The best pillow for amazing programmers2.");
