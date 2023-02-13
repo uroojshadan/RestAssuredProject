@@ -8,48 +8,48 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import util.TestBase;
 
 //end to end validation: 1.create a product 2.read all products to get firstProductID 
 //3.read One product with id to validate if the product we provided in payload is appearing
 
-public class CreateOneProductUsingExternalFileMethodDynamic extends TestBase{
+public class CreateOneProductUsingHashMapMethodTest {
 
 	String baseURI;
 	SoftAssert softAssert;
 	String firstProductID;
-	String createOneProductPayloadPath;
 	String readOneProductID;
-	//we can also get this from a method from another class like TestBase and extending it to this class 
-	//String path="src/main/java/data/createPayload.json";
-	
-	public CreateOneProductUsingExternalFileMethodDynamic() {
+	HashMap<String, String> createProductData;//passing createOneProductPayload as hashmap
+
+	public CreateOneProductUsingHashMapMethodTest() {
 		baseURI = "https://techfios.com/api-prod/api/product";
 		softAssert = new SoftAssert();
-		//createOneProductPayloadPath =path ;//-->use this when setting path as global variable
-		createOneProductPayloadPath=setFilePath("src/main/java/data/createPayload.json");
-		
 	}
 
-	 //1. method 1: sending createPayload as a external json file
-	@Test(priority=1)
-	public void createOneProductUsingExternalJsonFile() {
+	//  method 2: sending createPayload as a hashmap
+	
+	public HashMap<String, String> getCreatePayloadAsHashMap() {
 
-		/*
-		 * create one product payload: { "name" : "Amazing Pillow 2.0", "price" : "199",
-		 * "description" : "The best pillow for amazing programmers.", "category_id" :
-		 * "2", "category_name": "Electronics"
-		 * 
-		 * }
-		 * 
-		 * 
-		 */
+		createProductData = new HashMap<String, String>();
+
+		createProductData.put("name", "Amazing Pillow 5.0");
+		createProductData.put("price", "500");
+		createProductData.put("description", "The best pillow for amazing programmers2.");
+		createProductData.put("category_id", "2");
+
+		return createProductData;
+
+	}
+
+	@Test(priority = 1)
+	public void createOneProductUsingHashMap() {
+
+		
 		Response response =
 
 				given().baseUri(baseURI)// gets baseURI from constructor
 						.header("Content-Type", "application/json; charset=UTF-8")
 						.header("Authorization", "Bearer KKKhughghkkIIInkwlhd")// bearer token
-						.body(new File(createOneProductPayloadPath)).
+						.body(getCreatePayloadAsHashMap()).
 
 						/*
 						 * ways to pass post payload: 1. external json file 2. pojo class 3. hashMap 4.
@@ -84,7 +84,6 @@ public class CreateOneProductUsingExternalFileMethodDynamic extends TestBase{
 
 	}
 
-
 	@Test(priority = 2) // using readAllProducts to get first id
 	public void readAllProducts() {
 
@@ -109,16 +108,17 @@ public class CreateOneProductUsingExternalFileMethodDynamic extends TestBase{
 
 	}
 
-	// readOneProduct implemetation when creating One product using externalJsonFile
-	@Test(priority=3)
-	public void readOneProductWhenCreatingProductUsingExternalJson() {
+	
+	// readOneProduct implemetation when creating One product using hashmap
+	@Test(priority = 3)
+	public void readOneProductWhenCreatingProductUsingHashMap() {
 		Response response =
 
 				given()
 						// log().all().
 						.baseUri(baseURI)// gets baseURI from constructor
 						.header("Content-Type", "application/json").queryParam("id", readOneProductID)
-						.header("Authorization", "Bearer KKKhughghkkIIInkwlhd").// bearer token authorization as header
+						.header("Authorization", "Bearer KKKhughghkkIIInkwlhd").// bearer token
 
 						when().get("/read_one.php").then()
 
@@ -128,39 +128,29 @@ public class CreateOneProductUsingExternalFileMethodDynamic extends TestBase{
 
 		System.out.println("Response Body : " + responseBody);
 
-		JsonPath jsonPath1 = new JsonPath(responseBody);// for parsing response Body in readOneProduct response as Json
-		JsonPath jsonPath2 = new JsonPath(new File(createOneProductPayloadPath));// for parsing the file and validating
-																					// in json format
+		JsonPath jsonPath = new JsonPath(responseBody);
 
-		// actual variable values come from readOneProduct response body
-		// expected variable values come from file that we provide in createpayload file(json)
-
-		String actualProductId = jsonPath1.getString("id");
-		// product id from response body of readOneProduct should be the same as the
-		// first product id
-		// that we get from readAllProducts-->which is assigned to readOnePructID
+		String actualProductId = jsonPath.getString("id");
 		softAssert.assertEquals(actualProductId, readOneProductID, "Product ids donot match");
 
-		String actualProductName = jsonPath1.getString("name");
-		String expectedProductName = jsonPath2.getString("name");
+		String actualProductName = jsonPath.getString("name");
+		String expectedProductName = getCreatePayloadAsHashMap().get("name");
 		softAssert.assertEquals(actualProductName, expectedProductName, "Product names are not matching");
 
-		String actualproductDescription = jsonPath1.getString("description");
-		String expectedProductDescription = jsonPath2.getString("description");
+		String actualproductDescription = jsonPath.getString("description");
+		String expectedProductDescription = getCreatePayloadAsHashMap().get("description");
 		softAssert.assertEquals(actualproductDescription, expectedProductDescription,
 				"Product Description not matching");
 
-		String actualProductPrice = jsonPath1.getString("price");
-		String expectedProductPrice = jsonPath2.getString("price");
+		String actualProductPrice = jsonPath.getString("price");
+		String expectedProductPrice = getCreatePayloadAsHashMap().get("price");
 		softAssert.assertEquals(actualProductPrice, expectedProductPrice, "Prices not matching");
 
-		String actualProductCategory_id = jsonPath1.getString("category_id");
-		String expectedProductCategory_id = jsonPath2.getString("category_id");
+		String actualProductCategory_id = jsonPath.getString("category_id");
+		String expectedProductCategory_id = getCreatePayloadAsHashMap().get("category_id");
 		softAssert.assertEquals(actualProductCategory_id, expectedProductCategory_id, "category ids not matching");
 
 		softAssert.assertAll();
 	}
-
-	
 
 }

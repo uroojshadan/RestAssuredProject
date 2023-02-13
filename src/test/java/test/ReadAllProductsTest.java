@@ -9,11 +9,11 @@ import io.restassured.response.Response;
 import static org.hamcrest.Matchers.*;
 
 
-public class ReadAllProducts {
+public class ReadAllProductsTest {
 
 	String baseURI;
 	
-	public ReadAllProducts() {//constructor
+	public ReadAllProductsTest() {//constructor
 		baseURI="https://techfios.com/api-prod/api/product";
 	}
 	@Test

@@ -12,7 +12,7 @@ import io.restassured.response.Response;
 //end to end validation: 1.create a product 2.read all products to get firstProductID 
 //3.read One product with id to validate if the product we provided in payload is appearing
 
-public class CreateOneProductUsingExternalFileMethod {
+public class CreateOneProductUsingExternalFileMethodTest {
 
 	String baseURI;
 	SoftAssert softAssert;
@@ -20,7 +20,7 @@ public class CreateOneProductUsingExternalFileMethod {
 	String createOneProductPayloadPath;
 	String readOneProductID;
 	
-	public CreateOneProductUsingExternalFileMethod() {
+	public CreateOneProductUsingExternalFileMethodTest() {
 		baseURI = "https://techfios.com/api-prod/api/product";
 		softAssert = new SoftAssert();
 		createOneProductPayloadPath = "src/main/java/data/createPayload.json";

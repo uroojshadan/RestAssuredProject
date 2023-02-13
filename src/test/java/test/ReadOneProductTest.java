@@ -11,12 +11,12 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 
-public class ReadOneProduct {
+public class ReadOneProductTest {
 
 	String baseURI;
 	SoftAssert softAssert;
 	
-	public ReadOneProduct() {//constructor called first implicitly
+	public ReadOneProductTest() {//constructor called first implicitly
 		baseURI="https://techfios.com/api-prod/api/product";
 		softAssert=new SoftAssert();
 	}
