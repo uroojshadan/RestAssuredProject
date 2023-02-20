@@ -1,9 +1,7 @@
 Alphabets
 a
 b
-c
-d
-e
+
 
 Numbers
 1
