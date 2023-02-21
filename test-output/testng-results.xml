@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+<testng-results skipped="0" failed="0" ignored="0" total="3" passed="3">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="1985" started-at="2023-02-13T00:25:25 CST" finished-at="2023-02-13T00:25:27 CST">
+  <suite name="Default suite" duration-ms="3662" started-at="2023-02-21T00:33:24 CST" finished-at="2023-02-21T00:33:28 CST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="1985" started-at="2023-02-13T00:25:25 CST" finished-at="2023-02-13T00:25:27 CST">
-      <class name="test.UpdateOneProductUsingHashMapTest">
-        <test-method status="PASS" signature="updateOneProductUsingHashMap()[pri:1, instance:test.UpdateOneProductUsingHashMapTest@4b553d26]" name="updateOneProductUsingHashMap" duration-ms="1614" started-at="2023-02-13T00:25:25 CST" finished-at="2023-02-13T00:25:26 CST">
+    <test name="Default test" duration-ms="3662" started-at="2023-02-21T00:33:24 CST" finished-at="2023-02-21T00:33:28 CST">
+      <class name="test.CreateOneProductUsingExternalFileMethodTest">
+        <test-method status="PASS" signature="createOneProductUsingExternalJsonFile()[pri:1, instance:test.CreateOneProductUsingExternalFileMethodTest@4b553d26]" name="createOneProductUsingExternalJsonFile" duration-ms="2341" started-at="2023-02-21T00:33:24 CST" finished-at="2023-02-21T00:33:26 CST">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- updateOneProductUsingHashMap -->
-        <test-method status="PASS" signature="readOneProduct()[pri:2, instance:test.UpdateOneProductUsingHashMapTest@4b553d26]" name="readOneProduct" duration-ms="340" started-at="2023-02-13T00:25:26 CST" finished-at="2023-02-13T00:25:27 CST">
+        </test-method> <!-- createOneProductUsingExternalJsonFile -->
+        <test-method status="PASS" signature="readAllProducts()[pri:2, instance:test.CreateOneProductUsingExternalFileMethodTest@4b553d26]" name="readAllProducts" duration-ms="930" started-at="2023-02-21T00:33:26 CST" finished-at="2023-02-21T00:33:27 CST">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- readOneProduct -->
-      </class> <!-- test.UpdateOneProductUsingHashMapTest -->
+        </test-method> <!-- readAllProducts -->
+        <test-method status="PASS" signature="readOneProductWhenCreatingProductUsingExternalJson()[pri:3, instance:test.CreateOneProductUsingExternalFileMethodTest@4b553d26]" name="readOneProductWhenCreatingProductUsingExternalJson" duration-ms="348" started-at="2023-02-21T00:33:27 CST" finished-at="2023-02-21T00:33:28 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readOneProductWhenCreatingProductUsingExternalJson -->
+      </class> <!-- test.CreateOneProductUsingExternalFileMethodTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

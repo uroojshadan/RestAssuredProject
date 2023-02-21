@@ -45,7 +45,7 @@ public class CreateOneProductUsingExternalFileMethodTest {
 				given().baseUri(baseURI)// gets baseURI from constructor
 						.header("Content-Type", "application/json; charset=UTF-8")
 						.header("Authorization", "Bearer KKKhughghkkIIInkwlhd")// bearer token
-						.body(new File(createOneProductPayloadPath)).
+						.body(new File(createOneProductPayloadPath)).log().all().
 
 						/*
 						 * ways to pass post payload: 1. external json file 2. pojo class 3. hashMap 4.
