@@ -94,7 +94,7 @@ public class CreateOneProductUsingExternalFileMethodTest {
 
 		String responseBody = response.getBody().asString();
 
-		System.out.println("Response Body : " + responseBody);// -->astring() prints body in single line
+		System.out.println("Response Body : " + responseBody);// -->asString() prints body in single line
 		// response.getBody().prettyPrint();//gets in a nice format and not in single
 		// line
 
